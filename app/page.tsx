@@ -75,10 +75,10 @@ export default function Home() {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
-            Pengumuman Kelulusan Siswa
+            SDIT Tunas Ilmu
           </h1>
           <p className="text-sm text-slate-500">
-            Sistem Informasi Kelulusan Privat Online
+            Sistem Informasi Kelulusan Siswa Kelas 6 TA 2025/2026
           </p>
         </div>
 
@@ -179,13 +179,19 @@ export default function Home() {
               </div>
             ) : (
               <div className={`p-6 rounded-xl text-center shadow-inner ${
-                hasilSiswa.status_kelulusan === 'LULUS' 
-                  ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' 
-                  : 'bg-rose-50 border border-rose-200 text-rose-800'
+              hasilSiswa.status_kelulusan === 'LULUS' 
+                ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' 
+                : 'bg-rose-50 border border-rose-200 text-rose-800'
               }`}>
-                <p className="text-xs uppercase tracking-widest font-bold opacity-70">Sengaja Dinyatakan</p>
-                <p className="text-3xl font-extrabold my-2 tracking-wide">{hasilSiswa.status_kelulusan}</p>
-                <p className="text-xs opacity-80">Selamat menempuh jenjang pendidikan berikutnya!</p>
+              <p className="text-xs uppercase tracking-widest font-bold opacity-70">Dinyatakan</p>
+              <p className="text-3xl font-extrabold my-2 tracking-wide">{hasilSiswa.status_kelulusan}</p>
+    
+              {/* Baris teks dinamis di bawah ini yang diubah */}
+              <p className="text-xs opacity-80">
+                {hasilSiswa.status_kelulusan === 'LULUS' 
+                ? 'Selamat menempuh jenjang pendidikan berikutnya!' 
+                : 'Hubungi bagian Tata Usaha untuk informasi lebih jelas'}
+              </p>
               </div>
             )}
 
@@ -200,7 +206,7 @@ export default function Home() {
 
         {/* Footer */}
         <div className="text-center text-[10px] text-slate-400 pt-2 border-t border-slate-50">
-          &copy; 2026 Tim Akademik Sistem Kelulusan Privat.
+          &copy; 2026 Tim IT SDIT Tunas Ilmu.
         </div>
       </div>
     </main>
