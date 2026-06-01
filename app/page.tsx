@@ -222,14 +222,14 @@ export default function Home() {
                     <div className="space-y-3.5">
                       {[
                         { label: 'Pendidikan Agama Islam (PAI)', key: 'pai' },
-                        { label: 'PPKN', key: 'ppkn' },
+                        { label: 'Pendidikan Pancasila', key: 'ppkn' },
                         { label: 'Bahasa Indonesia', key: 'bi' },
                         { label: 'Matematika', key: 'mtk' },
                         { label: 'IPAS', key: 'ipas' },
                         { label: 'Bahasa Inggris', key: 'eng' },
-                        { label: 'SBDP', key: 'sbdp' },
+                        { label: 'Seni Rupa', key: 'sbdp' },
                         { label: 'PJOK', key: 'pjok' },
-                        { label: 'Bahasa Mulok', key: 'bumel' },
+                        { label: 'Budaya Melayu', key: 'bumel' },
                         { label: 'Bahasa Arab', key: 'arab' },
                       ].map((item) => {
                         const nilaiAngka = parseFloat(hasilSiswa[item.key]) || 0;
