@@ -278,7 +278,7 @@ export default function Home() {
                     {/* Ring Ringkasan Rata-Rata TKA */}
                     <div className="p-4 bg-slate-900 text-white rounded-xl flex justify-between items-center shadow-md">
                       <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Rata-Rata TKA</span>
-                      <span className="text-2xl font-black text-amber-400">{formatNilai(hasilSiswa.rata_rata_tka)}</span>
+                      <span className="text-2xl font-black text-amber-400">{formatNilai(hasilSiswa["rata-rata_tka"])}</span>
                     </div>
                   </div>
                 </div>
