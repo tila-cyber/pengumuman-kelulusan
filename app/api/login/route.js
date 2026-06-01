@@ -7,10 +7,10 @@ export async function POST(request) {
     const cleanNis = String(nis).trim();
     let cleanTanggalLahir = String(tanggal_lahir).trim();
 
-        // 1. PENCARIAN UTAMA
+    // 1. PENCARIAN UTAMA
     let { data: daftarSiswa } = await supabase
       .from('siswa')
-      .select('*')
+      .select('*') // Sudah benar mengambil semua kolom
       .eq('nis', cleanNis)
       .eq('tanggal_lahir', cleanTanggalLahir)
       .limit(1);
@@ -24,11 +24,11 @@ export async function POST(request) {
       );
     }
 
+    // 2. KIRIM BALIK SEMUA DATA (Termasuk 15 Kolom Nilai Baru)
     return Response.json({
       status: 'SUDAH_BUKA',
-      nama_siswa: siswa.nama_siswa,
-      status_kelulusan: siswa.status_kelulusan,
-      message: 'Selamat melihat hasil!'
+      message: 'Selamat melihat hasil!',
+      ...siswa // Trik magis: Menyalin seluruh isi kolom dari Supabase ke dalam JSON response
     });
 
   } catch (err) {
