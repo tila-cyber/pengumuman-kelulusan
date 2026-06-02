@@ -23,7 +23,7 @@ export default function Home() {
   const [sudahWaktunya, setSudahWaktunya] = useState(false);
 
   // Waktu target: 2 Juni 2026 18:00 WIB
-  const targetWaktu = new Date('2026-05-30T18:00:00+07:00').getTime();
+  const targetWaktu = new Date('2026-06-02T18:00:00+07:00').getTime();
 
   useEffect(() => {
     const hitungWaktu = () => {
@@ -217,7 +217,7 @@ export default function Home() {
                   <div className="p-5 space-y-5">
                     {/* Nilai Rata-Rata Besar */}
                     <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-200/60">
-                      <span className="text-slate-700 font-bold text-xs uppercase tracking-wider">Rata-Rata Ijazah</span>
+                      <span className="text-slate-700 font-bold text-xs uppercase tracking-wider">Nilai Rata-Rata Ijazah</span>
                       <span className="text-3xl font-black text-rose-900">{formatNilai(hasilSiswa["rata-rata"])}</span>
                     </div>
 
@@ -225,7 +225,7 @@ export default function Home() {
                     <div className="space-y-3.5">
                       {[
                         { label: 'Pendidikan Agama Islam (PAI)', key: 'pai' },
-                        { label: 'PPKN', key: 'ppkn' },
+                        { label: 'Pendidikan Pancasila', key: 'ppkn' },
                         { label: 'Bahasa Indonesia', key: 'bi' },
                         { label: 'Matematika', key: 'mtk' },
                         { label: 'IPAS', key: 'ipas' },
