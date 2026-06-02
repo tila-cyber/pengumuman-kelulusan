@@ -29,15 +29,17 @@ export default function Home() {
     const hitungWaktu = () => {
       const sekarang = new Date().getTime();
       const selisih = targetWaktu - sekarang;
+      const targetWaktuMs = targetWaktu;
+      const selisihMs = targetWaktuMs - sekarang;
 
-      if (selisih <= 0) {
+      if (selisihMs <= 0) {
         setSudahWaktunya(true);
         setWaktuMundur({ hari: 0, jam: 0, menit: 0, detik: 0 });
       } else {
-        const d = Math.floor(selisih / (1000 * 60 * 60 * 24));
-        const h = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((selisih % (1000 * 60)) / 1000);
+        const d = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
+        const h = Math.floor((selisihMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((selisihMs % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((selisihMs % (1000 * 60)) / 1000);
         setWaktuMundur({ hari: d, jam: h, menit: m, detik: s });
       }
     };
@@ -89,14 +91,15 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Komponen Kotak Hitung Mundur (Warna Merah Maroon Elegan & Tenang) */}
+        {/* Komponen Kotak Hitung Mundur (Warna Kuning Emas Kedap Kedip Modifikasi) */}
         <div className="bg-gradient-to-br from-rose-900 to-slate-800 rounded-xl p-4 text-white text-center shadow-md border border-rose-950/20">
           <p className="text-xs font-semibold uppercase tracking-wider text-rose-200 mb-2">
             {sudahWaktunya ? "Status Pengumuman:" : "Hitung Mundur Pengumuman:"}
           </p>
           
           {sudahWaktunya ? (
-            <div className="text-lg font-bold animate-pulse text-emerald-300">
+            /* Efek kedap-kedip dipertahankan (animate-pulse), warna diubah ke kuning amber terang */
+            <div className="text-lg font-bold animate-pulse text-amber-300 tracking-wide">
               Gerbang Pengumuman Telah Dibuka!
             </div>
           ) : (
@@ -222,14 +225,14 @@ export default function Home() {
                     <div className="space-y-3.5">
                       {[
                         { label: 'Pendidikan Agama Islam (PAI)', key: 'pai' },
-                        { label: 'Pendidikan Pancasila', key: 'ppkn' },
+                        { label: 'PPKN', key: 'ppkn' },
                         { label: 'Bahasa Indonesia', key: 'bi' },
                         { label: 'Matematika', key: 'mtk' },
                         { label: 'IPAS', key: 'ipas' },
                         { label: 'Bahasa Inggris', key: 'eng' },
-                        { label: 'Seni Rupa', key: 'sbdp' },
+                        { label: 'SBDP', key: 'sbdp' },
                         { label: 'PJOK', key: 'pjok' },
-                        { label: 'Budaya Melayu', key: 'bumel' },
+                        { label: 'Bahasa Mulok', key: 'bumel' },
                         { label: 'Bahasa Arab', key: 'arab' },
                       ].map((item) => {
                         const nilaiAngka = parseFloat(hasilSiswa[item.key]) || 0;
@@ -253,7 +256,7 @@ export default function Home() {
                 </div>
 
                 {/* ========================================================================= */}
-                {/* VISUALISASI SEKTOR 2: NILAI TKA */}
+                {/* VISUALISASI SEKTOR 2: NILAI TKA (MODIFIKASI BARU) */}
                 {/* ========================================================================= */}
                 <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                   <div className="bg-slate-800 p-4 text-white">
@@ -262,24 +265,38 @@ export default function Home() {
                     </h3>
                   </div>
                   
-                  <div className="p-5 space-y-4">
-                    {/* Grid Dua Kolom untuk Komparasi TKA */}
+                  <div className="p-5 space-y-5">
+                    {/* Grid Dua Kolom dengan Deskripsi Kualitatif di Bawah Angka */}
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-center">
-                        <p className="text-[10px] text-slate-500 font-extrabold uppercase tracking-widest mb-1">Numerasi</p>
-                        <p className="text-2xl font-black text-slate-800">{formatNilai(hasilSiswa.numerasi)}</p>
+                      {/* Blok Numerasi */}
+                      <div className="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col justify-between space-y-2">
+                        <div className="text-center">
+                          <p className="text-[10px] text-slate-500 font-extrabold uppercase tracking-widest mb-1">Numerasi</p>
+                          <p className="text-2xl font-black text-slate-800">{formatNilai(hasilSiswa.numerasi)}</p>
+                        </div>
+                        {/* Deskripsi Kualitatif Numerasi */}
+                        <div className="border-t border-slate-200/60 pt-2 text-center">
+                          <p className="text-[11px] font-medium text-slate-600 leading-relaxed italic">
+                            {hasilSiswa.deskripsi_numerasi || "Tidak ada deskripsi"}
+                          </p>
+                        </div>
                       </div>
-                      <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-center">
-                        <p className="text-[10px] text-slate-500 font-extrabold uppercase tracking-widest mb-1">Literasi</p>
-                        <p className="text-2xl font-black text-slate-800">{formatNilai(hasilSiswa.literasi)}</p>
+
+                      {/* Blok Literasi */}
+                      <div className="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col justify-between space-y-2">
+                        <div className="text-center">
+                          <p className="text-[10px] text-slate-500 font-extrabold uppercase tracking-widest mb-1">Literasi</p>
+                          <p className="text-2xl font-black text-slate-800">{formatNilai(hasilSiswa.literasi)}</p>
+                        </div>
+                        {/* Deskripsi Kualitatif Literasi */}
+                        <div className="border-t border-slate-200/60 pt-2 text-center">
+                          <p className="text-[11px] font-medium text-slate-600 leading-relaxed italic">
+                            {hasilSiswa.deskripsi_literasi || "Tidak ada deskripsi"}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Ring Ringkasan Rata-Rata TKA */}
-                    <div className="p-4 bg-slate-900 text-white rounded-xl flex justify-between items-center shadow-md">
-                      <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Rata-Rata TKA</span>
-                      <span className="text-2xl font-black text-amber-400">{formatNilai(hasilSiswa["rata-rata_tka"])}</span>
-                    </div>
                   </div>
                 </div>
               </>
